@@ -6,7 +6,7 @@ class InitManager{
         //入口方法
         InitManager.app = app;
         InitManager.initLoadRouters();
-
+        // InitManager.loadHttpException();
     }
     static initLoadRouters() {
         const apiDirectory = `${process.cwd()}/app/api`
@@ -22,6 +22,13 @@ class InitManager{
         }
         
     }
+
+    //全局导入（看情况）
+    // static loadHttpException(){
+    //     const errors = require('./http-exception');
+    //     global.errs = errors;
+    // }
+
 }
 
 module.exports = InitManager;
