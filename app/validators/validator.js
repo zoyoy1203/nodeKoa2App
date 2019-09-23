@@ -5,11 +5,13 @@ class PositiveIntegerValidator extends LinValidator{
     constructor(){
         super();
         this.id = [
-            new Rule('isInt','需要时正整数',{min:1}),
+            new Rule('isInt','需要为正整数',{min:1}),
         ]
     }
 }
 
-module.exports = {
+module.exports = { 
     PositiveIntegerValidator
 }
+
+

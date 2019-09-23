@@ -7,7 +7,16 @@ class InitManager{
         InitManager.app = app;
         InitManager.initLoadRouters();
         // InitManager.loadHttpException();
+        InitManager.loadConfig();
+
     }
+
+    static loadConfig(path = '') {
+        const configPath = path || process.cwd() + '/config/config.js';
+        const config = require(configPath);
+        global.config = config;
+    }
+
     static initLoadRouters() {
         const apiDirectory = `${process.cwd()}/app/api`
         //路由自动加载

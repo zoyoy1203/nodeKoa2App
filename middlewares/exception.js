@@ -1,9 +1,15 @@
 const {HttpException} = require('../core/http-exception');
 
+//拦截error
 const catchError = async (ctx, next)=> {
     try {
         await next();
     }catch(error){
+        //开发环境
+        //生产环境
+        if(global.config.environment === 'dev'){
+            throw error;
+        }
         if(error instanceof HttpException){
             ctx.body = {
                 msg:error.msg,

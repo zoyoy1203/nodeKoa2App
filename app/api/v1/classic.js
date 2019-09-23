@@ -10,11 +10,7 @@ router.post('/v1/:id/classic/latest', (ctx, next) => {
     const body = ctx.request.body;
 
     const v = new PositiveIntegerValidator().validate(ctx);
-
-    ctx.body = {
-        key: 'classic'
-    }
-    throw new Error('API Exception');
+    ctx.body = 'success';
 })
 
 module.exports = router;
