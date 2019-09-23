@@ -14,9 +14,19 @@ const sequelize = new Sequelize(dbName,user,password,{
     logging:true, //是否显示sql操作,
     timezone: '+08:00', //北京时间
     define:{
-
+        //坑爹的没声音
+        timestamps:true,
+        paranoid:true,
+        createdAt:'created_at',
+        updatedAt:'updated_at',
+        deletedAt:'deleted_at',
+        underscored:true
     }
 })
+
+sequelize.sync({
+    force:true
+});
 
 module.exports = {
     sequelize
