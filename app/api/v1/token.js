@@ -3,6 +3,7 @@ const {TokenValidator} = require('../../validators/validator')
 const {User} = require('../../models/user')
 const {LoginType} = require('../../lib/enum')
 const {generateToken} = require('../../../core/util')
+const {Auth} = require('../../../middlewares/auth')
 
 const router = new Router({
     prefix:'/v1/token'
@@ -27,7 +28,7 @@ router.post('/',async (ctx) => {
 
 async function emailLogin(account,secret){
    const user = await User.verifyEmailPassword(account,secret)
-   return token = generateToken(user.id,2)
+   return token = generateToken(user.id,Auth.USER)
 }
 
 module.exports = router
