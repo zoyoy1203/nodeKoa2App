@@ -10,4 +10,8 @@ module.exports = {
         user:'root',
         password:'123456',
     },
+    security:{
+        secretKey:"abcdefg",//要复杂无规律
+        expiresIn:60*60*24*30   //令牌过期时间：1小时60*60
+    }
 }

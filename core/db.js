@@ -25,7 +25,7 @@ const sequelize = new Sequelize(dbName,user,password,{
 })
 
 sequelize.sync({
-    force:true
+    force:false  //每次数据库清空:true
 });
 
 module.exports = {
