@@ -8,7 +8,7 @@ class Auth {
         Auth.ADMIN = 16
         Auth.SUPER_ADMIN = 32
     }
-
+//解析令牌token
     get m() {
         return async (ctx,next)=>{
             const userToken = basicAuth(ctx.req)

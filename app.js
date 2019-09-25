@@ -10,6 +10,8 @@ app.use(parser());
 //全局异常处理
 app.use(catchError);
 
+// require('./app/models/classic')  //创建表
+// require('./app/models/favor') 
 InitManager.initCore(app);
 
 app.listen(3000);

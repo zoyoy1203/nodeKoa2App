@@ -18,7 +18,8 @@ module.exports = {
         //填入相应的appId  appSecret
         // appId:'',
         // appSecret:'',
-
+        appId:'wx1eb2959d12e07952',
+        appSecret:'56e1982cdab294f78bdab808d8f6b033',
         loginUrl:'https://api.weixin.qq.com/sns/jscode2session?appid=%s&secret=%s&js_code=%s&grant_type=authorization_code'
     }
 }
