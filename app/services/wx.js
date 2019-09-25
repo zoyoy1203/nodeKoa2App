@@ -13,12 +13,13 @@ class WXManager{
             code)
 
         const result = await axios.get(url)
+        console.log(result)
         if(result.status !== 200){
             throw new global.errs.AuthFailed('openid获取失败')
         }
         const errcode = result.data.errcode 
         const errmsg = result.data.errmsg
-        if(errcode !== 0){
+        if(errcode){
             throw new global.errs.AuthFailed('openid获取失败:'+errmsg)
         }
 
