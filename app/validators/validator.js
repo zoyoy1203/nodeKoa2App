@@ -11,6 +11,19 @@ class PositiveIntegerValidator extends LinValidator{
     }
 }
 
+//验证书本id
+class BooksIdValidator extends LinValidator{
+    constructor(){
+        super()
+        this.id = [
+            new Rule('isLength','不符合id规则',{
+                min: 1,
+                max:32
+            })
+        ]
+    }
+}
+
 class RegisterValidator extends LinValidator{
     constructor(){
         super();
@@ -129,13 +142,42 @@ class ClassicValidator extends LikeValidator{
    
 }
 
+class SearchValidator extends LinValidator{
+    constructor(){
+        super()
+        this.q = [
+            new Rule('isLength','搜索关键词不能为空',{
+                min:1,
+                max:16
+            })
+        ]
+        this.start = [
+            new Rule('isInt','不符合规范',{
+                min:0,
+                max:60000
+            }),
+            new Rule('isOptional','',0) //默认值
+        ],
+        this.count = [
+            new Rule('isInt','不符合规范',{
+                min:1,
+                max:20
+            }),
+            new Rule('isOptional','',20) //默认值
+        ]
+
+    }
+}
+
 module.exports = { 
     PositiveIntegerValidator,
     RegisterValidator,
     TokenValidator,
     NotEmptyValidator,
     LikeValidator,
-    ClassicValidator
+    ClassicValidator,
+    BooksIdValidator,
+    SearchValidator
 }
 
 
