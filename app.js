@@ -11,7 +11,7 @@ app.use(parser());
 app.use(catchError);
 
 // require('./app/models/classic')  //创建表
-// require('./app/models/favor') 
+// require('./app/models/hot-book') 
 InitManager.initCore(app);
 
 app.listen(3000);
