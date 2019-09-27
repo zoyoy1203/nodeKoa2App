@@ -23,6 +23,52 @@ router.get('/latest',new Auth().m, async (ctx, next) => {
     ctx.body = art
 
 })
+//获取期刊下一期
+router.get('/:index/next',new Auth().m,async ctx =>{
+    const v = await new PositiveIntegerValidator().validate(ctx,{
+        id:'index'
+    })
+    const index = v.get('path.index')
+    const flow = await Flow.findOne({
+        where:{
+            index: index+1
+        }
+    })
+    if(!flow){
+        throw new global.errs.NotFound()
+    }
+    const art = await Art.getData(flow.art_id,flow.type)
+    const likeNext = await Favor.userLikeIt(flow.art_id,flow.type,ctx.auth.uid)
+    art.setDataValue('index', flow.index)
+    art.setDataValue('likeStatus',likeNext)
+    ctx.body = art
+})
+
+//获取期刊上一期
+router.get('/:index/previous',new Auth().m, async ctx => {
+    const v = await new PositiveIntegerValidator().validate(ctx, {
+        id:'index'
+    })
+    const index = v.get('path.index')
+    const flow = await Flow.findOne({
+        where:{
+            index: index-1
+        }
+    })
+    if(!flow){
+        throw new global.errs.NotFound()
+    }
+    const art = await Art.getData(flow.art_id,flow.type)
+    const likePrevious = await Favor.userLikeIt(flow.art_id,flow.type,ctx.auth.uid)
+    art.setDataValue('index', flow.index)
+    art.setDataValue('likeStatus', likePrevious)
+    ctx.body = art
+
+
+
+
+})
+
 
 //获取期刊详情信息
 router.get('/:type/:id', new Auth().m, async ctx => {
