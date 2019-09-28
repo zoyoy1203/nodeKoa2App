@@ -41,6 +41,7 @@ router.get('/:index/next',new Auth().m,async ctx =>{
     const likeNext = await Favor.userLikeIt(flow.art_id,flow.type,ctx.auth.uid)
     art.setDataValue('index', flow.index)
     art.setDataValue('likeStatus',likeNext)
+    // art.exclude = ['index','likeStatus'] //去掉相应字段
     ctx.body = art
 })
 
